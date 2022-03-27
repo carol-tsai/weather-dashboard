@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="./assets/css/style.css" />
+
+   <title>Weather Dashboard</title>
+</head>
+
+<body>
+   <header class="jumbotron jumbotron-fluid bg-info text-light text-center">
+      <h1>
+         Weather Dashboard
+      </h1>
+   </header>
+   <div class="container">
+      < class="row justify-content-center">
+         <div class="col-3">
+            <div class="card">
+               <div class="card-body">
+                  <h5 class="card-title">Search for a City:</h5>
+                  <input type="text" class="form-control" id="city"><br>
+                  <button class="card-body btn btn-primary"
+                     id="fetch-button">Search</button>
+               </div>
+               
+            </div>
+         </div>
+         <section class="col-9">
+            <section class="card">
+               <h2 id="city-name"></h2>
+               <ul>
+                  <li id="temp"></li>
+                  <li id="wind"></li>
+                  <li id="humidity"></li>
+                  <li id="uvi"></li>
+               </ul>
+            </section>
+            <h2>5-Day Forecast:</h2>
+            <section class="row">
+
+            </section>
+         </section>
+      </div>
+   </div>
+</body>
+
+<script src="./assets/js/script.js"></script>
+
+</html>
