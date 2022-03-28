@@ -3,7 +3,7 @@ var searchButton = document.getElementById('search-button');
 var key = 'c4321790b93f9f3b3e40df376e787fba';
 var cityNameEl = document.getElementById('city-name')
 var currentWeatherEl = document.getElementById('current-weather');
-var sidebarEl = document.getElementById('side-bar');
+var noticeEl = document.getElementById('notice');
 var forecastEl = document.getElementById('forecast');
 var searchHistoryEl = document.getElementById('search-history');
 
@@ -24,7 +24,8 @@ function renderCities() {
       var buttonEl = document.createElement('button');
       buttonEl.textContent = cities[i];
       buttonEl.setAttribute('data-name', cities[i]);
-      buttonEl.setAttribute('class', 'btn btn-secondary m-3');
+      buttonEl.setAttribute('class', 'btn btn-secondary my-2');
+      buttonEl.setAttribute('style', 'width: 100%;');
       buttonEl.addEventListener('click', handleClick);
       searchHistoryEl.append(buttonEl);
 
@@ -86,7 +87,7 @@ function getOneCall(lat, lon) {
             sectionEl.append(tempf);
             sectionEl.append(windf);
             sectionEl.append(humidityf);
-            sectionEl.setAttribute('class', 'bg-info text-white p-2 m-2');
+            sectionEl.setAttribute('class', 'bg-custom text-white p-2 m-2');
          }
       })
    
@@ -111,7 +112,11 @@ function getWeather(cityname) {
 function handleSearch(){
    var cityEl = document.getElementById('city');
    var name = cityEl.value;
-   if (!cities.includes(name)) {
+   noticeEl.textContent = '';
+   if (name == '') {
+      noticeEl.textContent = "Please enter a city name"
+      return;
+   } else if (!cities.includes(name)) {
       cities.unshift(name);
       storeCities();
    }

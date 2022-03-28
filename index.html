@@ -12,36 +12,37 @@
 </head>
 
 <body>
-   <header class="jumbotron jumbotron-fluid bg-info text-light text-center">
+   <header class="jumbotron jumbotron-fluid bg-custom text-light text-center">
       <h1>
          Weather Dashboard
       </h1>
    </header>
    <div class="container">
       <div class="row justify-content-center">
-         <div class="col-3" id="sidebar">
+         <div class="col-3">
             <div class="card">
                <div class="card-body">
                   <h5 class="card-title">Search for a City:</h5>
                   <input type="text" class="form-control" id="city"><br>
                   <button class="card-body btn btn-primary"
                      id="search-button">Search</button>
+                  <p id="notice" class="text-danger"></p>
                </div>
                <div class="card-body" id="search-history"></div>
             </div>
          </div>
          <section class="col-9 container">
-            <section class="card p-3">
+            <section class="card pl-3">
                <h2 id="city-name"></h2>
                <ul id="current-weather">
                </ul>
             </section>
             <section class="row justify-content-around" id="forecast">
-               <section id="forecast1" class="bg-info text-white"></section>
-               <section id="forecast2" class="bg-info text-white"></section>
-               <section id="forecast3" class="bg-info text-white"></section>
-               <section id="forecast4" class="bg-info text-white"></section>
-               <section id="forecast5" class="bg-info text-white"></section>
+               <section id="forecast1" class="bg-custom text-white"></section>
+               <section id="forecast2" class="bg-custom text-white"></section>
+               <section id="forecast3" class="bg-custom text-white"></section>
+               <section id="forecast4" class="bg-custom text-white"></section>
+               <section id="forecast5" class="bg-custom text-white"></section>
 
             </section>
          </section>
