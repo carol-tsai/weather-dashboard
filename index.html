@@ -18,37 +18,37 @@
       </h1>
    </header>
    <div class="container">
-      < class="row justify-content-center">
-         <div class="col-3">
+      <div class="row justify-content-center">
+         <div class="col-3" id="sidebar">
             <div class="card">
                <div class="card-body">
                   <h5 class="card-title">Search for a City:</h5>
                   <input type="text" class="form-control" id="city"><br>
                   <button class="card-body btn btn-primary"
-                     id="fetch-button">Search</button>
+                     id="search-button">Search</button>
                </div>
                
             </div>
          </div>
-         <section class="col-9">
+         <section class="col-9 container">
             <section class="card">
                <h2 id="city-name"></h2>
-               <ul>
-                  <li id="temp"></li>
-                  <li id="wind"></li>
-                  <li id="humidity"></li>
-                  <li id="uvi"></li>
+               <ul id="current-weather">
                </ul>
             </section>
-            <h2>5-Day Forecast:</h2>
-            <section class="row">
+            <section class="row justify-content-around" id="forecast">
+               <section id="forecast1" class="bg-info text-white"></section>
+               <section id="forecast2" class="bg-info text-white"></section>
+               <section id="forecast3" class="bg-info text-white"></section>
+               <section id="forecast4" class="bg-info text-white"></section>
+               <section id="forecast5" class="bg-info text-white"></section>
 
             </section>
          </section>
       </div>
    </div>
 </body>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
 <script src="./assets/js/script.js"></script>
 
 </html>
