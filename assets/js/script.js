@@ -5,13 +5,30 @@ var cityNameEl = document.getElementById('city-name')
 var currentWeatherEl = document.getElementById('current-weather');
 var sidebarEl = document.getElementById('side-bar');
 var forecastEl = document.getElementById('forecast');
+var searchHistoryEl = document.getElementById('search-history');
 
 function storeCities() {
-   return;
+   localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 function fetchCities() {
-   return;
+   var storedCities = JSON.parse(localStorage.getItem("cities"));
+   if (storedCities !== null) {
+      cities = storedCities;
+   }
+}
+
+function renderCities() {
+   searchHistoryEl.innerHTML = '';
+   for (i=0; i<cities.length; i++) {
+      var buttonEl = document.createElement('button');
+      buttonEl.textContent = cities[i];
+      buttonEl.setAttribute('data-name', cities[i]);
+      buttonEl.setAttribute('class', 'btn btn-secondary m-3');
+      buttonEl.addEventListener('click', handleClick);
+      searchHistoryEl.append(buttonEl);
+
+   }
 }
 
 function getOneCall(lat, lon) {
@@ -75,10 +92,9 @@ function getOneCall(lat, lon) {
    
 }
 
-function getWeather() {
-   var cityEl = document.getElementById('city');
-   var name = cityEl.value;
-   var currentUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + name + '&units=imperial&appid=' + key;
+function getWeather(cityname) {
+   clearWeather();
+   var currentUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&units=imperial&appid=' + key;
    fetch(currentUrl)
       .then(function (response) {
          return response.json();
@@ -86,91 +102,39 @@ function getWeather() {
       .then(function (data) {
          var dt = data.dt;
          var date = moment.unix(dt).format('MM-DD-YYYY');
-         cityNameEl.textContent = name + ' (' + date + ')';
+         cityNameEl.textContent = cityname + ' (' + date + ')';
          getOneCall(data.coord.lat, data.coord.lon);
 
       })
+}
+
+function handleSearch(){
+   var cityEl = document.getElementById('city');
+   var name = cityEl.value;
+   if (!cities.includes(name)) {
+      cities.unshift(name);
+      storeCities();
+   }
+   renderCities();
+   getWeather(name);
    cityEl.value = '';
 }
 
+function handleClick(event) {
+   var name = event.target.getAttribute('data-name');
+   getWeather(name);
+}
+
+function clearWeather() {
+   currentWeatherEl.innerHTML = '';
+   for (i=1; i<6;i++) {
+      var sectionEl = document.getElementById('forecast' + i);
+      sectionEl.innerHTML='';
+   }
+}
+
 fetchCities();
+renderCities();
 
-searchButton.addEventListener('click', getWeather)
+searchButton.addEventListener('click', handleSearch);
 
-
-
-// var fetchButton = document.getElementById('fetch-button');
-// var key = 'c4321790b93f9f3b3e40df376e787fba';
-// var cityNameEl = document.getElementById('city-name')
-// var currentWeatherEl = document.getElementById('current-weather');
-
-// var thisCity = {};
-
-
-// function getApi() {
-//    var city = document.getElementById('city').value;
-//    var requestUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + key;
-   
-//    var lat;
-//    var lon;
-//    fetch(requestUrl)
-//       .then(function (response) {
-//          return response.json();
-//       })
-//       .then(function (data) {
-//          thisCity.lat = data.coord.lat;
-//          thisCity.lon = data.coord.lon;
-//          console.log(thisCity);
-//          var onecallUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + thisCity.lat + '&lon=' + thisCity.lon + '&exclude=minutely,hourly,daily&units=imperial&appid=' + key;
-//          var dt = data.dt;
-//          var date = moment.unix(dt).format('MM-DD-YYYY');
-//          fetch(onecallUrl)
-//             .then(function (response) {
-//                return response.json();
-//             })
-//             .then(function (data) {
-//                cityNameEl.textContent = city + ' (' + date + ')';
-
-//                var icon = document.createElement('img');
-//                var iconLink = 'http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '@2x.png';
-//                icon.setAttribute('src', iconLink);
-//                cityNameEl.append(icon);
-
-//                var temp = document.createElement('li');
-//                var wind = document.createElement('li');
-//                var humidity = document.createElement('li');
-//                var uvi = document.createElement('li');
-
-//                temp.textContent = 'Temp: ' + data.current.temp + '°F';
-//                wind.textContent = 'Wind: ' + data.current.wind_speed + ' MPH';
-//                humidity.textContent = 'Humidity: ' + data.current.humidity + "%"
-//                uvi.textContent = 'UV Index: ' + data.current.uvi + "%"
-
-//                currentWeatherEl.append(temp);
-//                currentWeatherEl.append(wind);
-//                currentWeatherEl.append(humidity);
-//                currentWeatherEl.append(uvi);
-//             })      
-
-//          for (i = 0; i < 5; i++) {
-//             dt -= 86400;
-//             var timemachineUrl = 'https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=' + thisCity.lat + '&lon=' + thisCity.lon + '&dt=' + dt + '&units=imperial&appid=' + key;
-//             fetch(timemachineUrl)
-//                .then(function (response) {
-//                   return response.json();
-//                })
-//                .then(function (data) {
-//                   console.log(data);
-//                })           
-//          }
-
-//       });
-
-// }
-
-// fetchButton.addEventListener('click', getApi);
-
-
-// new idea
-// click gecth button
-// - creates new history button, calls all the weather data into an object, stores object in local storage
