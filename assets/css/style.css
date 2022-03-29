@@ -3,5 +3,17 @@
 }
 
 .bg-custom {
-   background-color: rgb(50, 50, 139);
+   background-color: rgb(63, 108, 167);
+}
+
+.uvi-high {
+   background-color: rgb(236, 73, 73);
+}
+
+.uvi-med {
+   background-color: rgb(245, 224, 37);
+}
+
+.uvi-low {
+   background-color: rgb(52, 228, 52);
 }

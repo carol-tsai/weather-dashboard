@@ -51,20 +51,32 @@ function getOneCall(lat, lon) {
          var wind = document.createElement('li');
          var humidity = document.createElement('li');
          var uvi = document.createElement('li');
+         var uviVal = data.current.uvi;
 
          temp.textContent = 'Temp: ' + data.current.temp + '°F';
          wind.textContent = 'Wind: ' + data.current.wind_speed + ' MPH';
          humidity.textContent = 'Humidity: ' + data.current.humidity + "%"
-         uvi.textContent = 'UV Index: ' + data.current.uvi + "%"
+         uvi.textContent = 'UV Index: '
+         var uvip = document.createElement('p');
+         uvip.setAttribute('style', 'display: inline;')
+         uvip.textContent=uviVal;
+
+         if (uviVal < 2) {
+            uvip.setAttribute('class', 'uvi-low p-1');
+         } else if (uviVal < 5) {
+            uvip.setAttribute('class', 'uvi-med  p-1');
+         } else {
+            uvip.setAttribute('class', 'uvi-high p-1')
+         }
+
+         uvi.append(uvip);
 
          currentWeatherEl.append(temp);
          currentWeatherEl.append(wind);
          currentWeatherEl.append(humidity);
          currentWeatherEl.append(uvi);
 
-         // var forecastTitle = document.createElement('h3');
-         // forecastTitle.textContent = '5-Day Forecast:'
-         // forecastEl.append(forecastTitle);
+         
 
          for (i=1; i<6; i++) {
             var day = data.daily[i];
@@ -111,7 +123,7 @@ function getWeather(cityname) {
 
 function handleSearch(){
    var cityEl = document.getElementById('city');
-   var name = cityEl.value;
+   var name = cityEl.value.trim();
    noticeEl.textContent = '';
    if (name == '') {
       noticeEl.textContent = "Please enter a city name"
