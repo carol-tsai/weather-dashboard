@@ -2,41 +2,33 @@
 
 ## Description
 
-This application will test your knowledge of the Harry Potter universe through a timed quiz. By saving your score you can play this quiz with your friends to find out who is a true wizarding master. 
+This application allows you to search for a city and return the current and future weather conditions of that city from the Open Weather API
 
 ### What I learned
-In the process of creating this project I learned to write HTML dynamically using Javascript, how to use timers, and how to save things to local storage.
+In the process of creating this project I learned how to perform API calls on server-side APIs while using the Open Weather API.
 
 ## Usage
 
-The webpage can be found at [this link](https://carol-tsai.github.io/harry-potter-quiz/)
+The webpage can be found at [this link](https://carol-tsai.github.io/weather-dashboard/)
 
-When you arrive at this page, there will be some basic instructions. Read them thoroughly and click start quiz when you are ready to begin. The timer will begin once you click start.
+When you arrive at this page, the panel on the right side of the page will have a search bar where you can search for a city.
 
-![Screenshot of Harry Potter Quiz](assets/images/start.png)
+![Screenshot of Weather Dashboard](assets/images/start.png)
 
-Once the quiz starts, answer the questions as quickly as possible in order to get the highest score. When you are done, you will be prompted to save your score by entering your iniitals.
+When you enter a city and click search, that city will appear in the search history under the search bar, and the current weather as well as the 5 day forecast will be displayed for that city. The UVI index will have a background color that indicates good, moderate, or bad UV conditions, which can inform you of the level of sun protection needed currently.
 
-![Screenshot of page that says "All done! Your final score is 10"](assets/images/save.png)
+![Screenshot of Weather Dashboard with Philadelphia weather](assets/images/search.png)
 
-Your score will be saved in local storage so that when you leave this page and return, your score will be saved.
+The cities that you search will be stored in local storage and displayed on the right hand panel. You can click on cities in your search history to see updated weather for those cities.
 
-![Screenshot of saved scores](assets/images/scores.png)
+![Screenshot of Weather Dashboard with Berkeley weather](assets/images/store.png)
 
 
 ## Credits
 
 Cirriculum and materials for the UPenn LPS Coding Bootcamp was referenced in the creation of this application.
 
-### Reference documents
-
-* [MDN Web Docs on addEventListener()](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
-
-* [MDN Web Docs on window.localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-
-* [MDN Web Docs on setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)
-
-* [MDN Web Docs on clearInterval()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearInterval)
+Weather information in this application is from the Open Weather API
 
 
 ## How to Contribute
